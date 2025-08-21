@@ -6,7 +6,7 @@ import { registerUser } from "../features/auth/authSlices";
 import { Link, useNavigate } from "react-router-dom";
 
 
-type RegisterForm = {
+export type RegisterForm = {
   email: string;
   password: string;
   name: string;
