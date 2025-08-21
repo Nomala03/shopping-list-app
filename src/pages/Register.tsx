@@ -62,8 +62,7 @@ function Register() {
                     Register
                 </button>
                 <p className="mt-4 text-center text-gray-600">
-                    Already have an account?
-                    
+                    Already have an account?   {/* Link to login page can be added here */ }
                 </p>
             </form>
         </div>
