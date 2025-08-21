@@ -3,6 +3,7 @@ import { hashPassword } from "../utils/encryption";
 import { useDispatch } from "react-redux";
 import type { AppDispatch } from "../redux/store";
 import { registerUser } from "../features/auth/authSlices";
+import { Link, useNavigate } from "react-router-dom";
 
 
 type RegisterForm = {
@@ -22,7 +23,7 @@ function Register() {
         password: "",
     });
    const dispatch = useDispatch<AppDispatch>();
-    
+   const navigate = useNavigate(); 
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -33,7 +34,7 @@ function Register() {
         e.preventDefault();
         const hashed = await hashPassword(form.password);
         await dispatch(registerUser({ ...form, password: hashed}));
-         // Redirect to login after successful registration
+        navigate("/login"); // Redirect to login page after successful registration
         };
 
     return (
@@ -62,7 +63,8 @@ function Register() {
                     Register
                 </button>
                 <p className="mt-4 text-center text-gray-600">
-                    Already have an account?   {/* Link to login page can be added here */ }
+                    Already have an account?
+                    <Link to="/login" className="text-blue-500 px-2">Login</Link>   {/* Link to login page can be added here */ }
                 </p>
             </form>
         </div>
