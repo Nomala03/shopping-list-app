@@ -1,76 +1,57 @@
-import { useState } from "react";
-import { hashPassword } from "../utils/encryption";
-import { useDispatch } from "react-redux";
-import type { AppDispatch } from "../redux/store";
-import { registerUser } from "../features/auth/authSlices";
-import { Link, useNavigate } from "react-router-dom";
 
 
-export type RegisterForm = {
-  email: string;
-  password: string;
-  name: string;
-  surname: string;
-  cellphone: string;
-};
+import { FormEvent, useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAppDispatch, useAppSelector } from '../hooks'
+import { registerThunk } from '../store/authSlice'
 
-function Register() {
-    const [form, setForm] = useState<RegisterForm>({
-        name: "",
-        surname: "",
-        email: "",
-        cellphone: "",
-        password: "",
-    });
-   const dispatch = useDispatch<AppDispatch>();
-   const navigate = useNavigate(); 
+export default function Register() {
+  const dispatch = useAppDispatch()
+  const navigate = useNavigate()
+  const { status, error } = useAppSelector(s => s.auth)
 
-    const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        const { name, value } = e.target;
-        setForm(prev => ({ ...prev, [name]: value }));
-    }
+  const [form, setForm] = useState({ email: '', password: '', name: '', surname: '', phone: '' })
 
-    const handleRegister = async (e: React. FormEvent) => {
-        e.preventDefault();
-        const hashed = await hashPassword(form.password);
-        await dispatch(registerUser({ ...form, password: hashed}));
-        navigate("/login"); // Redirect to login page after successful registration
-        };
+  function set<K extends keyof typeof form>(k: K, v: string) { setForm(prev => ({ ...prev, [k]: v })) }
 
-    return (
-        <div className= "flex item-center justify-center min-h-screen pt-24 pb-24 bg-gray-100 ">
-            <form 
-              onSubmit={handleRegister}
-              className= "bg-white p-8 rounded-2xl shadow-lg h-130 w-96"
-            >
-                <h2 className= "text-xl mb-4 text-center">Register</h2>
-                {(Object.keys(form)as (keyof RegisterForm)[]).map(field => (
-                <input
-                  key={field}
-                  type= {field === "email" ? "email" : field === "password" ? "password" : "text"}
-                  name= {field}
-                  placeholder= {field.charAt(0).toUpperCase() + field.slice(1)}
-                  value= {form[field]}       
-                  className= "w-full p-2 mb-3 border border-gray-300 rounded-xl"
-                  onChange= {handleChange}
-                  required
-                />
-                ))}
-                <button
-                  type="submit"
-                  className="w-full bg-blue-500 text-white p-3 mt-6  rounded-xl" 
-                  >
-                    Register
-                </button>
-                <p className="mt-4 text-center text-gray-600">
-                    Already have an account?
-                    <Link to="/login" className="text-blue-500 px-2">Login</Link>   {/* Link to login page can be added here */ }
-                </p>
-            </form>
-        </div>
-    );
+  async function onSubmit(e: FormEvent) {
+    e.preventDefault()
+    const res = await dispatch(registerThunk(form))
+    if (registerThunk.fulfilled.match(res)) navigate('/')
+  }
+
+  return (
+    <div className="container">
+      <div className="card" style={{maxWidth:520, margin:'40px auto'}}>
+        <h2>Register</h2>
+        <form className="row cols-2" onSubmit={onSubmit}>
+          <div>
+            <label>Name</label>
+            <input className="input" value={form.name} onChange={e=>set('name', e.target.value)} required />
+          </div>
+          <div>
+            <label>Surname</label>
+            <input className="input" value={form.surname} onChange={e=>set('surname', e.target.value)} required />
+          </div>
+          <div>
+            <label>Cellphone number</label>
+            <input className="input" value={form.phone} onChange={e=>set('phone', e.target.value)} required />
+          </div>
+          <div>
+            <label>Email</label>
+            <input className="input" type="email" value={form.email} onChange={e=>set('email', e.target.value)} required />
+          </div>
+          <div>
+            <label>Password</label>
+            <input className="input" type="password" value={form.password} onChange={e=>set('password', e.target.value)} required />
+          </div>
+          <div style={{alignSelf:'end'}}>
+            <button className="btn" disabled={status==='loading'}>{status==='loading'?'Creating...':'Create Account'}</button>
+          </div>
+        </form>
+        {error && <div className="help" style={{marginTop:8}}>{error}</div>}
+        <p className="help" style={{marginTop:12}}>Already have an account? <Link to="/login">Login</Link></p>
+      </div>
+    </div>
+  )
 }
-
-export default Register;
-
-
