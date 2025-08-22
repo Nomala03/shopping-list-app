@@ -3,6 +3,8 @@ import type { FormEvent } from 'react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { loginThunk } from '../store/authSlice'
+import { Button } from '../components/Button'
+import { Input } from '../components/Input'
 
 export default function Login() {
   const dispatch = useAppDispatch()
@@ -23,23 +25,19 @@ export default function Login() {
   }
 
   return (
-    <div className="container">
-      <div className="card" style={{maxWidth:480, margin:'40px auto'}}>
-        <h2>Login</h2>
-        <form className="row" onSubmit={onSubmit}>
-          <div>
-            <label>Email</label>
-            <input className="input" type="email" value={email} onChange={e=>setEmail(e.target.value)} required />
-          </div>
-          <div>
-            <label>Password</label>
-            <input className="input" type="password" value={password} onChange={e=>setPassword(e.target.value)} required />
-          </div>
+    <section className="min-h-screen flex items-center justify-center bg-gray-200 px-4">
+      <div className="bg-white p-12 text-sm rounded-2xl shadow-lg w-full max-w-md" style={{maxWidth:480, margin:'40px auto'}}>
+        <h2 className='text-xl font-bold mb-6 text-center text-gray-700'>Login</h2>
+        <form className="max-w-md w-full space-y-4" onSubmit={onSubmit}>
+          
+            <Input placeholder='email' type="email" value={email} onChange={e=>setEmail(e.target.value)} required />
+            <Input placeholder='password' type="password" value={password} onChange={e=>setPassword(e.target.value)} required />
+          
           {error && <div className="help">{error}</div>}
-          <button className="btn" disabled={status==='loading'}>{status==='loading'?'Signing in...':'Login'}</button>
+          <Button disabled={status==='loading'}>{status==='loading'?'Signing in...':'Login'}</Button>
         </form>
-        <p className="help" style={{marginTop:12}}>No account? <Link to="/register">Register</Link></p>
+        <p className="text-sm " style={{marginTop:12}}>No account? <Link to="/register">Register</Link></p>
       </div>
-    </div>
+    </section>
   )
 }

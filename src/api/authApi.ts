@@ -1,6 +1,6 @@
 import { http } from './http'
 import * as bcrypt from 'bcryptjs'
-import { LoginPayload, RegisterPayload, User } from '../types'
+import type { LoginPayload, RegisterPayload, User } from '../types'
 
 const USERS = '/users'
 

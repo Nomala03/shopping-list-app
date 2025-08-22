@@ -1,9 +1,10 @@
-
-
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { registerThunk } from '../store/authSlice'
+import { Input } from '../components/Input'
+import { Button } from '../components/Button'
 
 export default function Register() {
   const dispatch = useAppDispatch()
@@ -21,36 +22,22 @@ export default function Register() {
   }
 
   return (
-    <div className="container">
-      <div className="card" style={{maxWidth:520, margin:'40px auto'}}>
-        <h2>Register</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-200 px-4">
+      <div className="bg-white p-12 text-sm rounded-2xl shadow-lg w-full max-w-md" style={{maxWidth:520, margin:'40px auto'}}>
+        <h2  className='text-xl font-bold mb-6 text-center text-gray-700'>Register</h2>
         <form className="row cols-2" onSubmit={onSubmit}>
-          <div>
-            <label>Name</label>
-            <input className="input" value={form.name} onChange={e=>set('name', e.target.value)} required />
-          </div>
-          <div>
-            <label>Surname</label>
-            <input className="input" value={form.surname} onChange={e=>set('surname', e.target.value)} required />
-          </div>
-          <div>
-            <label>Cellphone number</label>
-            <input className="input" value={form.phone} onChange={e=>set('phone', e.target.value)} required />
-          </div>
-          <div>
-            <label>Email</label>
-            <input className="input" type="email" value={form.email} onChange={e=>set('email', e.target.value)} required />
-          </div>
-          <div>
-            <label>Password</label>
-            <input className="input" type="password" value={form.password} onChange={e=>set('password', e.target.value)} required />
-          </div>
+            <Input type="text" placeholder='name' value={form.name} onChange={e=>set('name', e.target.value)} required />
+            <Input type="text" placeholder='surname' value={form.surname} onChange={e=>set('surname', e.target.value)} required />
+            <Input type="text" placeholder='phone'value={form.phone} onChange={e=>set('phone', e.target.value)} required />
+            <Input type="email" placeholder='email' value={form.email} onChange={e=>set('email', e.target.value)} required />
+            <Input type="password" placeholder='password' value={form.password} onChange={e=>set('password', e.target.value)} required />
+                
           <div style={{alignSelf:'end'}}>
-            <button className="btn" disabled={status==='loading'}>{status==='loading'?'Creating...':'Create Account'}</button>
+            <Button disabled={status==='loading'}>{status==='loading'?'Creating...':'Create Account'}</Button>
           </div>
         </form>
-        {error && <div className="help" style={{marginTop:8}}>{error}</div>}
-        <p className="help" style={{marginTop:12}}>Already have an account? <Link to="/login">Login</Link></p>
+        {error && <div style={{marginTop:8, fontSize:14, color:'var(--muted)'}}>{error}</div>}
+        <p style={{marginTop:12}}>Already have an account? <Link to="/login" className="text-blue-700 m-2">Login</Link></p>
       </div>
     </div>
   )

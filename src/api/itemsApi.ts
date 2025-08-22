@@ -1,5 +1,5 @@
 import { http } from './http'
-import { ShoppingItem } from '../types'
+import type { ShoppingItem } from '../types'
 
 const ITEMS = '/shoppingLists'
 

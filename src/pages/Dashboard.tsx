@@ -1,8 +1,8 @@
 import { useEffect, useMemo, useState } from 'react'
-import { Link, useNavigate, useSearchParams } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelector } from '../hooks'
-import { createItemThunk, deleteItemThunk, fetchItemsThunk, selectFilters, selectItems, setFilters } from '../store/itemsSlice'
-import { Category, ShoppingItem } from '../types'
+import { createItemThunk, updateItemThunk, deleteItemThunk, fetchItemsThunk, selectFilters, selectItems, setFilters } from '../store/itemsSlice'
+import type { Category, ShoppingItem } from '../types'
 
 const categories: Category[] = ['Groceries', 'Household', 'Personal', 'Electronics', 'Other']
 
@@ -46,7 +46,7 @@ export default function Dashboard() {
     if (q !== filters.q || sort !== filters.sort || order !== filters.order) {
       dispatch(setFilters({ q, sort, order }))
     }
-  }, [searchParams])
+  }, [searchParams, dispatch, filters.q, filters.sort, filters.order])
 
   // Sync Redux filters -> URL
   useEffect(() => {
@@ -54,7 +54,7 @@ export default function Dashboard() {
     const desired = { q: filters.q, sort: filters.sort, order: filters.order }
     const changed = current.q !== desired.q || current.sort !== desired.sort || current.order !== desired.order
     if (changed) setSearchParams(desired, { replace: true })
-  }, [filters])
+  }, [filters, searchParams, setSearchParams])
 
   useEffect(() => {
     if (user) dispatch(fetchItemsThunk(user.id))

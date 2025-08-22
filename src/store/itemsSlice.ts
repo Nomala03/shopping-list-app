@@ -1,5 +1,6 @@
-import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit'
-import { ShoppingItem, Filters } from '../types'
+import { createSlice, createAsyncThunk} from '@reduxjs/toolkit'
+import type { PayloadAction } from '@reduxjs/toolkit'
+import type { ShoppingItem, Filters } from '../types'
 import { createItem, deleteItem, fetchItemsByUser, updateItem } from '../api/itemsApi'
 import type { RootState } from '../store'
 
