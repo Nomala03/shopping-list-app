@@ -18,7 +18,8 @@ export default function Register() {
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
     const res = await dispatch(registerThunk(form))
-    if (registerThunk.fulfilled.match(res)) navigate('/')
+    if (registerThunk.fulfilled.match(res)) navigate('/login')
+      console.log(res)
   }
 
   return (

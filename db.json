@@ -1,4 +1,33 @@
 {
-  "users": [],
-  "shoppingLists": []
+  "users": [
+    {
+      "id": "1",
+      "email": "test@example.com",
+      "passwordHash": "$2a$10$3zjUO.6..Qjcq9jzG9tKMuVp7iMNcA6U26uP9DqXzOEClQ5iFfZgS",
+      "name": "Test",
+      "surname": "User",
+      "phone": "1234567890"
+    },
+    {
+      "id": "90ea",
+      "email": "mbalimadonsela03@gmail.com",
+      "passwordHash": "$2b$10$DXaKqT.yp4iyhKpVBsuoSewj6eewmkHfSI.qNu2GVQIr9/36dzmHy",
+      "name": "mbalo",
+      "surname": "madonsela",
+      "phone": "0815557656"
+    }
+  ],
+  "shoppingItems": [
+    {
+      "id": "1",
+      "userId": 1,
+      "name": "Milk",
+      "quantity": 2,
+      "notes": "Low fat",
+      "category": "Groceries",
+      "images": [],
+      "createdAt": "2025-08-24T12:00:00.000Z",
+      "updatedAt": "2025-08-24T12:00:00.000Z"
+    }
+  ]
 }

@@ -16,21 +16,36 @@ const initialState: AuthState = {
   error: null
 }
 
-export const registerThunk = createAsyncThunk('auth/register', async (payload: RegisterPayload) => {
-  const user = await registerUser(payload)
-  return user
+export const registerThunk = createAsyncThunk('auth/register', async (payload: RegisterPayload, thunkAPI) => {
+  try{ 
+    const user = await registerUser(payload)
+    return user
+  } catch (error: unknown) { 
+    const errorMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Registration failed'
+    return thunkAPI.rejectWithValue(errorMessage)
+  } 
 })
 
-export const loginThunk = createAsyncThunk('auth/login', async (payload: LoginPayload) => {
-  const user = await loginUser(payload)
-  return user
+export const loginThunk = createAsyncThunk('auth/login', async (payload: LoginPayload, thunkAPI) => {
+  try{
+    const user = await loginUser(payload)
+    return user
+  } catch (error: unknown) {
+    const errorMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Login failed'
+    return thunkAPI.rejectWithValue(errorMessage)
+  }  
 })
 
 export const updateProfileThunk = createAsyncThunk(
   'auth/updateProfile',
-  async ({ userId, updates }: { userId: number; updates: Partial<Omit<User, 'id'>> & { password?: string } }) => {
-    const updated = await updateUser(userId, updates)
-    return updated
+  async ({ userId, updates }: { userId: number; updates: Partial<Omit<User, 'id'>> & { password?: string } }, thunkAPI) => {
+    try{
+      const updated = await updateUser(userId, updates)
+      return updated
+    } catch (error: unknown) {
+      const errorMessage = (error as { response?: { data?: { message?: string } } })?.response?.data?.message || 'Update failed'
+      return thunkAPI.rejectWithValue(errorMessage)
+    } 
   }
 )
 
@@ -45,16 +60,16 @@ const authSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
+    //Register
       .addCase(registerThunk.pending, (s) => { s.status = 'loading'; s.error = null })
-      .addCase(registerThunk.fulfilled, (s, a: PayloadAction<User>) => {
-        s.status = 'succeeded'; s.user = a.payload; localStorage.setItem('auth:user', JSON.stringify(a.payload))
-      })
-      .addCase(registerThunk.rejected, (s, a) => { s.status = 'failed'; s.error = a.error.message ?? 'Registration failed' })
+      .addCase(registerThunk.fulfilled, (s) => { s.status = 'succeeded' })
+      .addCase(registerThunk.rejected, (s, a) => { s.status = 'failed'; s.error = (a.payload as string) ?? 'Registration failed' })
+    //Login
       .addCase(loginThunk.pending, (s) => { s.status = 'loading'; s.error = null })
       .addCase(loginThunk.fulfilled, (s, a: PayloadAction<User>) => {
-        s.status = 'succeeded'; s.user = a.payload; localStorage.setItem('auth:user', JSON.stringify(a.payload))
-      })
-      .addCase(loginThunk.rejected, (s, a) => { s.status = 'failed'; s.error = a.error.message ?? 'Login failed' })
+        s.status = 'succeeded'; s.user = a.payload; localStorage.setItem('auth:user', JSON.stringify(a.payload))})
+      .addCase(loginThunk.rejected, (s, a) => { s.status = 'failed'; s.error = (a.payload as string)?? 'Login failed' })
+    //Update Profile
       .addCase(updateProfileThunk.fulfilled, (s, a: PayloadAction<User>) => {
         s.user = a.payload
         localStorage.setItem('auth:user', JSON.stringify(a.payload))

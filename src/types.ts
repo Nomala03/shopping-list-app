@@ -2,6 +2,7 @@ export type ID = number
 
 export type Category = 'Groceries' | 'Household' | 'Personal' | 'Electronics' | 'Other'
 
+//Stored in db.json
 export interface User {
   id: ID
   email: string
@@ -11,6 +12,7 @@ export interface User {
   phone: string
 }
 
+//Payloads for API calls
 export interface RegisterPayload {
   email: string
   password: string

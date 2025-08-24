@@ -1,25 +1,28 @@
-import { FormEvent, useState } from 'react'
+import { useState } from 'react'
+import type { FormEvent } from 'react'
 import { useAppDispatch, useAppSelector } from '../hooks'
 import { updateProfileThunk } from '../store/authSlice'
 
 export default function Profile() {
   const { user } = useAppSelector(s => s.auth)
   const dispatch = useAppDispatch()
-  if (!user) return null
 
   const [form, setForm] = useState({
-    name: user.name,
-    surname: user.surname,
-    phone: user.phone,
-    email: user.email,
+    name: user?.name || '',
+    surname: user?.surname || '',
+    phone: user?.phone || '',
+    email: user?.email || '',
     password: '' // optional change
   })
+
+  if (!user) return null
   function set<K extends keyof typeof form>(k: K, v: string) { setForm(prev => ({ ...prev, [k]: v })) }
 
   async function onSubmit(e: FormEvent) {
     e.preventDefault()
     const updates: { [k: string]: string } = { name: form.name, surname: form.surname, phone: form.phone, email: form.email }
     if (form.password.trim().length > 0) updates.password = form.password
+    if (!user) return;
     await dispatch(updateProfileThunk({ userId: user.id, updates }))
   }
 

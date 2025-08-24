@@ -1,5 +1,6 @@
 import axios from 'axios'
 
-export const API_BASE = 'http://localhost:5000'
-
-export const http = axios.create({ baseURL: API_BASE })
+export const http = axios.create({
+  baseURL: 'http://localhost:3000', // JSON Server base URL
+  headers: { 'Content-Type': 'application/json' }
+})

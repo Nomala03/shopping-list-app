@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { fetchItemById } from '../api/itemsApi'
-import { ShoppingItem } from '../types'
+import type { ShoppingItem } from '../types'
 
 export default function ShareView() {
   const { itemId } = useParams()
@@ -13,7 +13,7 @@ export default function ShareView() {
       if (!itemId) return
       if (itemId === 'guide') return
       try { setItem(await fetchItemById(Number(itemId))) }
-      catch (e) { setError('Item not found') }
+      catch { setError('Item not found') }
     }
     run()
   }, [itemId])
