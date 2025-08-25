@@ -12,15 +12,14 @@
       "id": "90ea",
       "email": "mbalimadonsela03@gmail.com",
       "passwordHash": "$2b$10$DXaKqT.yp4iyhKpVBsuoSewj6eewmkHfSI.qNu2GVQIr9/36dzmHy",
-      "name": "mbalo",
-      "surname": "madonsela",
+      "name": "Nomala",
+      "surname": "Madonsela",
       "phone": "0815557656"
     }
   ],
   "shoppingItems": [
     {
-      "id": "1",
-      "userId": 1,
+      "userId": "1",
       "name": "Milk",
       "quantity": 2,
       "notes": "Low fat",
@@ -28,6 +27,19 @@
       "images": [],
       "createdAt": "2025-08-24T12:00:00.000Z",
       "updatedAt": "2025-08-24T12:00:00.000Z"
+    },
+    {
+      "id": "dcd0",
+      "userId": "90ea",
+      "name": "Milk",
+      "quantity": 1,
+      "notes": "Natural milk",
+      "category": "Groceries",
+      "images": [
+        "https://images.unsplash.com/photo-1563636619-e9143da7973b?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      ],
+      "createdAt": "2025-08-25T12:22:32.848Z",
+      "updatedAt": "2025-08-25T12:22:32.848Z"
     }
   ]
 }

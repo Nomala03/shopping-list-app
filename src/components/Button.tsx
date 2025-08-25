@@ -7,7 +7,7 @@ interface ButtonProps {
 
 export const Button: React.FC<ButtonProps> = ({ children, disabled }) => {
   return (
-    <button className="bg-blue-600 text-white mt-2 px-4 py-2 rounded-xl hover:bg-blue-700" disabled={disabled}>
+    <button className="w-full py-2 rounded-lg font-semibold text-white bg-gradient-to-r from-emerald-400 to-green-800 hover:from-emerald-700 hover:to-green-700 transition" disabled={disabled}>
       {children}
     </button>
   )

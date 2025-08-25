@@ -25,19 +25,21 @@ export default function Login() {
   }
 
   return (
-    <section className="min-h-screen flex items-center justify-center bg-gray-200 px-4">
-      <div className="bg-white p-12 text-sm rounded-2xl shadow-lg w-full max-w-md" style={{maxWidth:480, margin:'40px auto'}}>
-        <h2 className='text-xl font-bold mb-6 text-center text-gray-700'>Login</h2>
-        <form className="max-w-md w-full space-y-4" onSubmit={onSubmit}>
-          
-            <Input placeholder='email' type="email" value={email} onChange={e=>setEmail(e.target.value)} required />
-            <Input placeholder='password' type="password" value={password} onChange={e=>setPassword(e.target.value)} required />
-          
-          {error && <div className="help">{error}</div>}
-          <Button disabled={status==='loading'}>{status==='loading'?'Signing in...':'Login'}</Button>
-        </form>
-        <p className="text-sm " style={{marginTop:12}}>No account? <Link to="/register">Register</Link></p>
-      </div>
-    </section>
-  )
+  <section className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-500 via-green-700 to-emerald-800 px-4">
+    <div className="bg-white/70 backdrop-blur-md p-12 text-sm rounded-2xl shadow-2xl w-full max-w-md">
+      <h2 className="text-2xl font-bold mb-6 text-center text-emerald-900">Login</h2>
+      <form className="max-w-md w-full space-y-6 flex flex-col" onSubmit={onSubmit}>
+        <Input placeholder='email' type="email" value={email} onChange={e=>setEmail(e.target.value)} required /> 
+        <Input placeholder='password' type="password" value={password} onChange={e=>setPassword(e.target.value)} required /> {error && <div className="text-red-600 text-sm">{error}</div>} 
+        <Button disabled={status==='loading'}>{status==='loading'?'Signing in...':'Login'}</Button>
+      </form>
+      <p className="text-sm text-gray-700 mt-4 text-center">
+        No account?{" "}
+        <Link to="/register" className="text-emerald-600 hover:underline">
+          Register
+        </Link>
+      </p>
+    </div>
+  </section>
+)
 }
