@@ -23,22 +23,22 @@ export default function Register() {
   }
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200 px-4">
-      <div className="bg-white p-12 text-sm rounded-2xl shadow-lg w-full max-w-md" style={{maxWidth:520, margin:'40px auto'}}>
-        <h2  className='text-xl font-bold mb-6 text-center text-gray-700'>Register</h2>
-        <form className="row cols-2" onSubmit={onSubmit}>
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-green-500 via-green-700 to-emerald-800 px-4">
+      <div className="bg-white/70  backdrop-blur-md p-12 text-sm rounded-2xl shadow-2xl w-full max-w-md">
+        <h2  className='text-xl font-medium mb-6 text-center text-gray-600'>Register</h2>
+        <form className="max-w-md w-full space-y-2 flex flex-col" onSubmit={onSubmit}>
             <Input type="text" placeholder='name' value={form.name} onChange={e=>set('name', e.target.value)} required />
             <Input type="text" placeholder='surname' value={form.surname} onChange={e=>set('surname', e.target.value)} required />
             <Input type="text" placeholder='phone'value={form.phone} onChange={e=>set('phone', e.target.value)} required />
             <Input type="email" placeholder='email' value={form.email} onChange={e=>set('email', e.target.value)} required />
             <Input type="password" placeholder='password' value={form.password} onChange={e=>set('password', e.target.value)} required />
                 
-          <div style={{alignSelf:'end'}}>
+          <div>
             <Button disabled={status==='loading'}>{status==='loading'?'Creating...':'Create Account'}</Button>
           </div>
         </form>
         {error && <div style={{marginTop:8, fontSize:14, color:'var(--muted)'}}>{error}</div>}
-        <p style={{marginTop:12}}>Already have an account? <Link to="/login" className="text-blue-700 m-2">Login</Link></p>
+        <p style={{marginTop:12}}>Already have an account? <Link to="/login" className="text-gray-700 hover:underline">Login</Link></p>
       </div>
     </div>
   )
