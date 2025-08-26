@@ -92,7 +92,7 @@ const itemsSlice = createSlice({
       .addCase(
         createItemThunk.fulfilled,
         (s, a: PayloadAction<ShoppingItem>) => {
-          // push item exactly as returned from API
+          // pushing item exactly as returned from API
           s.items.unshift(a.payload);
         }
       )

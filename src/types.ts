@@ -31,8 +31,8 @@ export interface ShoppingItem {
   notes?: string
   category: Category
   images: string[] // URLs
-  createdAt: string // ISO date
-  updatedAt: string // ISO date
+  createdAt: string // date
+  updatedAt: string // date
 }
 
 export interface Filters {

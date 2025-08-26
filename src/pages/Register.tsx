@@ -38,7 +38,7 @@ export default function Register() {
           </div>
         </form>
         {error && <div style={{marginTop:8, fontSize:14, color:'var(--muted)'}}>{error}</div>}
-        <p style={{marginTop:12}}>Already have an account? <Link to="/login" className="text-gray-700 hover:underline">Login</Link></p>
+        <p>Already have an account? <Link to="/login" className="text-emerald-700 hover:underline">Login</Link></p>
       </div>
     </div>
   )

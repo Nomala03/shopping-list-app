@@ -12,7 +12,7 @@
       "id": "90ea",
       "email": "mbalimadonsela03@gmail.com",
       "passwordHash": "$2b$10$DXaKqT.yp4iyhKpVBsuoSewj6eewmkHfSI.qNu2GVQIr9/36dzmHy",
-      "name": "Nomala",
+      "name": "Mbee",
       "surname": "Madonsela",
       "phone": "0815557656"
     }
@@ -31,7 +31,7 @@
     {
       "id": "dcd0",
       "userId": "90ea",
-      "name": "Milk",
+      "name": "Milktart",
       "quantity": 1,
       "notes": "Natural milk",
       "category": "Groceries",
@@ -39,7 +39,33 @@
         "https://images.unsplash.com/photo-1563636619-e9143da7973b?q=80&w=765&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
       ],
       "createdAt": "2025-08-25T12:22:32.848Z",
-      "updatedAt": "2025-08-25T12:22:32.848Z"
+      "updatedAt": "2025-08-25T17:59:17.704Z"
+    },
+    {
+      "id": "3245",
+      "userId": "90ea",
+      "name": "Bread",
+      "quantity": 2,
+      "notes": "Garlic Bread",
+      "category": "Groceries",
+      "images": [
+        "https://plus.unsplash.com/premium_photo-1711752902734-a36167479983?q=80&w=688&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+      ],
+      "createdAt": "2025-08-25T23:10:04.443Z",
+      "updatedAt": "2025-08-25T23:10:04.443Z"
+    },
+    {
+      "id": "5e5e",
+      "userId": "90ea",
+      "name": "Perfume",
+      "quantity": 1,
+      "notes": "Giorgio Armani",
+      "category": "Personal",
+      "images": [
+        "https://images.unsplash.com/photo-1547887537-6158d64c35b3?w=700&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8cGVyZnVtZXxlbnwwfHwwfHx8MA%3D%3D"
+      ],
+      "createdAt": "2025-08-25T23:28:41.779Z",
+      "updatedAt": "2025-08-25T23:28:41.779Z"
     }
   ]
 }

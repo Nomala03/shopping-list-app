@@ -2,7 +2,7 @@ import { useState } from "react"
 import { NavLink } from "react-router-dom"
 import { useAppDispatch, useAppSelector } from "../hooks"
 import { logout } from "../store/authSlice"
-import { Menu, X } from "lucide-react" // icon library (lucide-react)
+import { Menu, X } from "lucide-react" 
 
 export default function Navbar() {
   const { user } = useAppSelector(s => s.auth)
@@ -10,22 +10,22 @@ export default function Navbar() {
   const [menuOpen, setMenuOpen] = useState(false)
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
+    <header className="bg-gradient-to-br from-green-500 via-green-600 to-emerald-700 shadow-md sticky top-0 z-50">
       <div className="max-w-6xl mx-auto px-4 py-3 flex justify-between items-center">
         
         {/* Logo */}
-        <strong className="text-lg font-semibold text-blue-600">
+        <strong className="text- 2xl font-semibold text-white">
           🛒 My Dashboard
         </strong>
 
         {/* Desktop Nav */}
-        <nav className="hidden md:flex gap-6 text-gray-700">
+        <nav className="hidden md:flex gap-6 text-white">
           {user && (
             <>
               <NavLink 
                 to="/" 
                 className={({ isActive }) => 
-                  `hover:text-blue-600 ${isActive ? "text-blue-600 font-medium" : ""}`
+                  `hover:text-emerald-900 ${isActive ? "text-green-950 font-medium" : ""}`
                 }
               >
                 Home
@@ -33,7 +33,7 @@ export default function Navbar() {
               <NavLink 
                 to="/profile" 
                 className={({ isActive }) => 
-                  `hover:text-blue-600 ${isActive ? "text-blue-600 font-medium" : ""}`
+                  `hover:text-emerald-900 ${isActive ? "text-emerald-950 font-medium" : ""}`
                 }
               >
                 Profile
@@ -43,7 +43,7 @@ export default function Navbar() {
           <NavLink 
             to="/share/guide" 
             className={({ isActive }) => 
-              `hover:text-blue-600 ${isActive ? "text-blue-600 font-medium" : ""}`
+              `hover:text-emerald-900 ${isActive ? "text-emerald-950 font-medium" : ""}`
             }
           >
             Share
@@ -55,7 +55,7 @@ export default function Navbar() {
           {user ? (
             <button
               onClick={() => dispatch(logout())}
-              className="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+              className="px-4 py-2 rounded-xl bg-white/70 text-gray-700 hover:bg-gray-300 transition"
             >
               Logout
             </button>
@@ -80,7 +80,7 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       {menuOpen && (
-        <div className="md:hidden bg-white border-t border-gray-200 shadow-sm">
+        <div className="md:hidden bg-white/80 border-t rounded-b-2xl border-gray-200 shadow-sm">
           <nav className="flex flex-col gap-4 p-4 text-gray-700">
             {user && (
               <>
@@ -88,7 +88,7 @@ export default function Navbar() {
                   to="/" 
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) => 
-                    `hover:text-blue-600 ${isActive ? "text-blue-600 font-medium" : ""}`
+                    `hover:text-emerald-300 ${isActive ? "text-emerald-600 font-medium" : ""}`
                   }
                 >
                   Home
@@ -97,7 +97,7 @@ export default function Navbar() {
                   to="/profile" 
                   onClick={() => setMenuOpen(false)}
                   className={({ isActive }) => 
-                    `hover:text-blue-600 ${isActive ? "text-blue-600 font-medium" : ""}`
+                    `hover:text-emerald-300 ${isActive ? "text-emerald-600 font-medium" : ""}`
                   }
                 >
                   Profile
@@ -108,7 +108,7 @@ export default function Navbar() {
               to="/share/guide" 
               onClick={() => setMenuOpen(false)}
               className={({ isActive }) => 
-                `hover:text-blue-600 ${isActive ? "text-blue-600 font-medium" : ""}`
+                `hover:text-emerald-300 ${isActive ? "text-emerald-600 font-medium" : ""}`
               }
             >
               Share
@@ -121,7 +121,7 @@ export default function Navbar() {
                   dispatch(logout())
                   setMenuOpen(false)
                 }}
-                className="px-4 py-2 rounded-xl bg-gray-200 text-gray-700 hover:bg-gray-300 transition text-left"
+                className="w-60 px-2 py-2 rounded-xl bg-gray-200 text-gray-700 hover:bg-gray-300 transition text-left"
               >
                 Logout
               </button>
@@ -129,7 +129,7 @@ export default function Navbar() {
               <NavLink 
                 to="/login"
                 onClick={() => setMenuOpen(false)}
-                className="px-4 py-2 rounded-xl bg-blue-600 text-white hover:bg-blue-700 transition text-center"
+                className="px-4 py-2 rounded-xl bg-emerald-600 text-white hover:bg-emerald-700 transition text-center"
               >
                 Login
               </NavLink>

@@ -43,7 +43,7 @@ export async function updateUser(
 ): Promise<User> {
   const toUpdate: Partial<User> = { ...updates }
 
-  // If password is provided → hash it
+  // password → hashed
   if (updates.password && updates.password.length > 0) {
     const saltRounds = 10
     toUpdate.passwordHash = await bcrypt.hash(updates.password, saltRounds)

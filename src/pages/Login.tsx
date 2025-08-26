@@ -35,7 +35,7 @@ export default function Login() {
       </form>
       <p className="text-sm text-gray-700 mt-4 text-center">
         No account?{" "}
-        <Link to="/register" className="text-gray-700 hover:underline">
+        <Link to="/register" className="text-emerald-700 hover:underline">
           Register
         </Link>
       </p>
