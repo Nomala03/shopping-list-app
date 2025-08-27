@@ -80,9 +80,9 @@ const itemsSlice = createSlice({
       })
       .addCase(
         fetchItemsThunk.fulfilled,
-        (s, a: PayloadAction<ShoppingItem[]>) => {
+        (s, a) => {
           s.status = "succeeded";
-          s.items = a.payload;
+          s.items = Array.isArray(a.payload) ? a.payload : [];
         }
       )
       .addCase(fetchItemsThunk.rejected, (s, a) => {

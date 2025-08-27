@@ -33,7 +33,12 @@ function ItemCard({
   onShare: (id: number) => void;
 }) {
   return (
-    <div className="w-100 bg-white/70 shadow-md rounded-2xl p-4 flex flex-col">
+    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        
+    <div
+      key={item.id}
+      className="bg-white/70 shadow-md rounded-2xl p-4 flex flex-col"
+    >
       {item.images?.[0] && (
         <img
           className="w-full h-40 object-cover rounded-lg mb-3"
@@ -41,18 +46,21 @@ function ItemCard({
           alt={item.name}
         />
       )}
+
       <div className="flex justify-between items-center mb-2">
-        <h3 className="text-lg font-semibold">{item.name}</h3>
+        <h3 className="text-lg font-semibold truncate">{item.name}</h3>
         <span className="inline-block px-2 py-1 rounded-lg text-xs font-medium bg-gray-200 text-gray-600">
           {item.category}
         </span>
       </div>
+
       <div className="text-sm text-gray-600">
         Qty: {item.quantity} • Added{" "}
         {new Date(item.createdAt).toLocaleDateString()}
       </div>
+
       {item.notes && <p className="mt-2 text-gray-700">{item.notes}</p>}
-      <div className="flex gap-2 mt-4">
+      <div className="flex flex-col sm:flex-row sm:flex-wrap gap-2 mt-4">
         <button
           className="px-3 py-2 rounded-xl bg-gray-300 text-gray-800 hover:bg-gray-400"
           onClick={() => onEdit(item)}
@@ -73,9 +81,9 @@ function ItemCard({
         </button>
       </div>
     </div>
-  );
-}
-
+</div>
+  )}
+  
 export default function Dashboard() {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

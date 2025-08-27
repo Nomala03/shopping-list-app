@@ -15,6 +15,22 @@
       "name": "Mbee",
       "surname": "Madonsela",
       "phone": "0815557656"
+    },
+    {
+      "email": "mbalimadonsela03@gmail.com",
+      "passwordHash": "$2b$10$6VMBQanhS1WFOO/4g.R.yuizLBJBjXMbvdC00GbL25KmVgKVgO.9i",
+      "name": "Mbali",
+      "surname": "Madonsela",
+      "phone": "0812345671",
+      "id": "s8du5vy"
+    },
+    {
+      "email": "mbalimadonsela03@gmsil.com",
+      "passwordHash": "$2b$10$cuNtQuVLwxL4wq52u4gR4u5AT6Nj4.Y/ZbXuj4rOKveiQuVjKoqF.",
+      "name": "Mbali",
+      "surname": "Madonsela",
+      "phone": "0812345678",
+      "id": "PqpXvum"
     }
   ],
   "shoppingItems": [
